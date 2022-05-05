@@ -20,36 +20,20 @@ if [ -d "/home/$(whoami)/Eat-PKG-Manager" ]; then
    exit 1
 fi
 
-# Get Linux distribution and set the name of it
-if [ -f /etc/os-release ]; then
-    # freedesktop.org and systemd
-    . /etc/os-release
-    OS=$NAME
-elif type lsb_release >/dev/null 2>&1; then
-    # linuxbase.org
-    OS=$(lsb_release -si)
-elif [ -f /etc/debian_version ]; then
-    # Older Debian/Ubuntu/etc.
-    OS=Debian
+# Get Linux distribution and set the dependency installation command for it
+if [ -f /etc/debian_version ]; then
+    # Debian/Ubuntu/etc.
+    INSTALL_COMMAND="sudo apt-get update && sudo apt-get install git python3 python3-pip -y"
 elif [ -f /etc/SuSe-release ]; then
-    # Older SuSE/etc.
-    OS=SUSE
+    # SuSE/etc.
+    INSTALL_COMMAND="sudo zypper refresh && sudo zypper install -y python310 python310-pip git"
 elif [ -f /etc/redhat-release ]; then
     # Older Red Hat, CentOS, etc.
-    OS=RHEL
+    INSTALL_COMMAND="sudo yum install -y python310 python310-pip git"
 else
     dialog --title "Unsupported Linux Distribution" --msgbox "EatInstaller has detected an unsupported Linux distro. Supported distros are Debian GNU/Linux, Ubuntu, Kali, Linux Mint, openSUSE, SUSE, Pengwin, Raspberry Pi OS, Fedora, Red Hat, CentOS, other RHEL/SUSE/Debian based distributions." 1000 1000
     clear
     exit 1
-fi
-
-# Check distro and pick the right command for installing dependencies.
-if [ ! OS -ne "Debian" ]; then # on Debian, use apt-get
-    INSTALL_COMMAND="sudo apt-get update && sudo apt-get install git python3 python3-pip -y"
-elif [ ! OS -ne "RHEL" ]; then # om RHEL, use yum
-    INSTALL_COMMAND="sudo yum install -y python310 python310-pip git"
-elif [ ! OS -ne "SUSE" ]; then # on (open)SUSE, use zypper
-    INSTALL_COMMAND="sudo zypper refresh && sudo zypper install -y python310 python310-pip git"
 fi
 
 # Print an error if user is not in sudoers or hackers are installing eat (implemented in next line)
