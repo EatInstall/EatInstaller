@@ -31,6 +31,9 @@ else
     if command -v zypper &> /dev/null; then
         # SuSE/etc.
         INSTALL_COMMAND="sudo zypper refresh && sudo zypper install -y python310 python310-pip git"
+    elif command -v pacman &> /dev/null; then
+        # Arch.
+        INSTALL_COMMAND="sudo pacman -Syu && sudo pacman -S python git && python3 -m ensurepip"
     else
         dialog --title "Unsupported Linux Distribution" --msgbox "EatInstaller has detected an unsupported Linux distro. Supported distros are Debian GNU/Linux, Ubuntu, Kali, Linux Mint, openSUSE, SUSE, Pengwin, Raspberry Pi OS, Fedora, Red Hat, CentOS, Android (Termux), other RHEL/SUSE/Debian based distributions." 1000 1000
         clear
@@ -53,7 +56,6 @@ clear
 # Install dependencies, return output in the UI
 dialog --title "Installing OS Dependencies" --prgbox "Eat is installing it's dependencies. This will take a while, and the progress can be seen below." "$INSTALL_COMMAND" 1000 1000
 dialog --title "Installing Python Dependencies" --prgbox "Eat is installing additional dependencies for Python 3." "pip install colorama distro requests pyyaml distro" 1000 1000
-clear
 
 # Ask the user to configure the Eat sources
 if dialog --title "Installation" --yesno "The Eat network and Eat itself will be installed NOW. The network will contain each package you install using Eat. Removing the network is possible, but will lead to Eat recovering the network. The UI will be temporarily disabled, but it will appear again soon. Continue?" 1000 1000
