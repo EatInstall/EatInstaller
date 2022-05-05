@@ -70,9 +70,9 @@ fi
 clear
 echo "" >> ~/.bashrc
 echo "# Add eat package manager commands." >> ~/.bashrc
-echo "alias eat='python ~/Eat-PKG-Manager/eat.py'" >> ~/.bashrc
-echo "alias eatinst='python ~/Eat-PKG-Manager/eat-install.py'" >> ~/.bashrc
-echo "alias eathelp='python ~/Eat-PKG-Manager/man-eat.py'" >> ~/.bashrc
+echo "alias eat='python3 ~/Eat-PKG-Manager/eat.py'" >> ~/.bashrc
+echo "alias eatinst='python3 ~/Eat-PKG-Manager/eat-install.py'" >> ~/.bashrc
+echo "alias eathelp='python3 ~/Eat-PKG-Manager/man-eat.py'" >> ~/.bashrc
 dialog --title "Setup Complete" --msgbox "Eat has been installed! You can configure Eat to your favourites by editing ~/eatconfig.yaml, so you can make Eat your favourite package manager. Thank you for installing Eat!" 1000 1000
 clear
 exit 0
