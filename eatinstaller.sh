@@ -35,7 +35,7 @@ else
         # Arch.
         INSTALL_COMMAND="sudo pacman -Syu && sudo pacman -S python git && python3 -m ensurepip"
     else
-        dialog --title "Unsupported Linux Distribution" --msgbox "EatInstaller has detected an unsupported Linux distro. Supported distros are Debian GNU/Linux, Ubuntu, Kali, Linux Mint, openSUSE, SUSE, Pengwin, Raspberry Pi OS, Fedora, Red Hat, CentOS, Android (Termux), other RHEL/SUSE/Debian based distributions." 1000 1000
+        dialog --title "Unsupported Linux Distribution" --msgbox "EatInstaller has detected an unsupported Linux distro. Supported distros are Debian GNU/Linux, Ubuntu, Kali, Linux Mint, openSUSE, SUSE, Pengwin, Raspberry Pi OS, Fedora, Red Hat, CentOS, ArchLinux, Android (Termux), other RHEL/SUSE/Debian based distributions." 1000 1000
         clear
         exit 1
     fi
