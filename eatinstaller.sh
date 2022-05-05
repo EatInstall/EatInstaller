@@ -8,6 +8,8 @@ if ! command -v dialog &> /dev/null; then
 fi
 if [[ $SOTYPE -ne "linux-gnu" ]]; then
    dialog --title "Unsupported OS" --msgbox "Eat is only supported on Linux and Windows Subsystem for Linux, but macOS is planned." 1000 1000
+   clear
+   exit 1
 fi
 if ! [[ $(id -u) -ne 0 ]]; then
    dialog --title "Root Permissions Not Allowed" --msgbox "To prevent sudo conflicts, the Eat installer UI cannot be run as root (superuser). Did you accidentally put \"sudo\" at the start? If so, run the command again without sudo." 8 60
