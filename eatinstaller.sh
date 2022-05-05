@@ -44,11 +44,11 @@ else
 fi
 
 # Check distro and pick the right command for installing dependencies.
-if ! [ OS -ne "Debian" ]; then # on Debian, use apt-get
+if [ ! OS -ne "Debian" ]; then # on Debian, use apt-get
     INSTALL_COMMAND="sudo apt-get update && sudo apt-get install git python3 python3-pip -y"
-elif ! [ OS -ne "RHEL" ]; then # om RHEL, use yum
+elif [ ! OS -ne "RHEL" ]; then # om RHEL, use yum
     INSTALL_COMMAND="sudo yum install -y python310 python310-pip git"
-elif ! [ OS -ne "SUSE" ]; then # on (open)SUSE, use zypper
+elif [ ! OS -ne "SUSE" ]; then # on (open)SUSE, use zypper
     INSTALL_COMMAND="sudo zypper refresh && sudo zypper install -y python310 python310-pip git"
 fi
 
