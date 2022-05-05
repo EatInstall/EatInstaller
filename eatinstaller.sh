@@ -24,16 +24,18 @@ fi
 if [ -f /etc/debian_version ]; then
     # Debian/Ubuntu/etc.
     INSTALL_COMMAND="sudo apt-get update && sudo apt-get install git python3 python3-pip -y"
-elif [ -f /etc/SuSe-release ]; then
-    # SuSE/etc.
-    INSTALL_COMMAND="sudo zypper refresh && sudo zypper install -y python310 python310-pip git"
 elif [ -f /etc/redhat-release ]; then
     # Older Red Hat, CentOS, etc.
     INSTALL_COMMAND="sudo yum install -y python310 python310-pip git"
 else
-    dialog --title "Unsupported Linux Distribution" --msgbox "EatInstaller has detected an unsupported Linux distro. Supported distros are Debian GNU/Linux, Ubuntu, Kali, Linux Mint, openSUSE, SUSE, Pengwin, Raspberry Pi OS, Fedora, Red Hat, CentOS, other RHEL/SUSE/Debian based distributions." 1000 1000
-    clear
-    exit 1
+    if command -v zypper &> /dev/null; then
+        # SuSE/etc.
+        INSTALL_COMMAND="sudo zypper refresh && sudo zypper install -y python310 python310-pip git"
+    else
+        dialog --title "Unsupported Linux Distribution" --msgbox "EatInstaller has detected an unsupported Linux distro. Supported distros are Debian GNU/Linux, Ubuntu, Kali, Linux Mint, openSUSE, SUSE, Pengwin, Raspberry Pi OS, Fedora, Red Hat, CentOS, Android (Termux), other RHEL/SUSE/Debian based distributions." 1000 1000
+        clear
+        exit 1
+    fi
 fi
 
 # Print an error if user is not in sudoers or hackers are installing eat (implemented in next line)
