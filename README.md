@@ -4,19 +4,12 @@ A community-maintained graphical Eat installer, just for you.
 
 ## Running
 
-In order to use EatInstaller, you need to use a *Debian-based Linux*.
-Examples include Ubuntu, Pengwin (formerly WinLinux), and Raspberry
-Pi OS (formerly Raspbian). You may also use Debian, but beware that on
-WSL, you'll need to add the `non-free` repo as many packages in `main`
-only appear with `non-free` added to your `apt`'s `sources.list`. To
-verify that your distro is supported, use `screenfetch`.
-
-This installer also requires:
+This installer requires:
 * `sudo`
 * The `dialog` program
 * [cURL](https://curl.se/index.html)
 
-To install `dialog`:
+To install `dialog` on Debian, Ubuntu, etc.:
 ```shell
 sudo add-apt-repository -y universe
 sudo apt update
@@ -30,7 +23,7 @@ sudo apt install dialog
 
 * * *
 
-To install cURL, run
+To install cURL on Debian, Ubuntu, etc., run
 ```shell
 sudo apt update
 sudo apt install curl
