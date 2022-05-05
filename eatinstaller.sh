@@ -55,7 +55,7 @@ clear
 
 # Install dependencies, return output in the UI
 dialog --title "Installing OS Dependencies" --prgbox "Eat is installing it's dependencies. This will take a while, and the progress can be seen below." "$INSTALL_COMMAND" 1000 1000
-dialog --title "Installing Python Dependencies" --prgbox "Eat is installing additional dependencies for Python 3." "pip install colorama distro requests pyyaml distro" 1000 1000
+dialog --title "Installing Python Dependencies" --prgbox "Eat is installing additional dependencies for Python 3." "python3 -m pip install colorama distro requests pyyaml distro" 1000 1000
 
 # Ask the user to configure the Eat sources
 if dialog --title "Installation" --yesno "The Eat network and Eat itself will be installed NOW. The network will contain each package you install using Eat. Removing the network is possible, but will lead to Eat recovering the network. The UI will be temporarily disabled, but it will appear again soon. Continue?" 1000 1000
