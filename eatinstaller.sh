@@ -25,7 +25,7 @@ if [ -f /etc/debian_version ]; then
     # Debian/Ubuntu/etc.
     INSTALL_COMMAND="sudo apt-get update && sudo apt-get install git python3 python3-pip -y"
 elif [ -f /etc/redhat-release ]; then
-    # Older Red Hat, CentOS, etc.
+    # Red Hat, CentOS, etc.
     INSTALL_COMMAND="sudo yum install -y python310 python310-pip git"
 else
     if command -v zypper &> /dev/null; then
@@ -48,7 +48,6 @@ autherror() {
 sudo echo -n "" || autherror
 
 # Before doing anything, clear the screen
-sleep 1
 clear
 
 # Install dependencies, return output in the UI
