@@ -28,11 +28,11 @@ if [ -f /etc/debian_version ]; then
     INSTALL_COMMAND="sudo apt-get update && sudo apt-get install git python3 python3-pip -y"
 elif [ -f /etc/redhat-release ]; then
     # Red Hat, CentOS, etc.
-    INSTALL_COMMAND="sudo yum install -y python310 python310-pip git"
+    INSTALL_COMMAND="sudo yum install -y python3 git && python3 -m ensurepip"
 else
     if command -v zypper &> /dev/null; then
         # SuSE/etc.
-        INSTALL_COMMAND="sudo zypper refresh && sudo zypper install -y python310 python310-pip git"
+        INSTALL_COMMAND="sudo zypper refresh && sudo zypper install -y python310 python310-pip git && python3 -m ensurepip"
     elif command -v pacman &> /dev/null; then
         # Arch.
         INSTALL_COMMAND="sudo pacman -Syu && sudo pacman -S python git --needed --noconfirm && python3 -m ensurepip"
