@@ -62,6 +62,7 @@ autherror() {
 sudo echo -n "" || autherror
 
 # Before doing anything, clear the screen
+sleep 1
 clear
 
 # Install dependencies, return output in the UI
