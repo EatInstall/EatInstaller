@@ -6,7 +6,7 @@ if ! command -v dialog &> /dev/null; then
    echo "On Debian, it's in the main repository."
    exit 1
 fi
-if [[ $SOTYPE -ne "linux-gnu" ]]; then
+if ($SOTYPE != "linux-gnu"); then
    dialog --no-shadow --title "Unsupported OS" --msgbox "Eat is only supported on Linux and Windows Subsystem for Linux, but macOS is planned." 1000 1000
    clear
    exit 1
@@ -34,10 +34,10 @@ else
         # SuSE/etc.
         INSTALL_COMMAND="sudo zypper refresh && sudo zypper install -y python310 python310-pip git && python3 -m ensurepip"
     elif command -v pacman &> /dev/null; then
-        # Arch.
-        INSTALL_COMMAND="sudo pacman -Syu && sudo pacman -S python git --needed --noconfirm && python3 -m ensurepip"
+        # Arch/etc.
+        INSTALL_COMMAND="sudo pacman -Sy && sudo pacman -S python git --needed --noconfirm && python3 -m ensurepip"
     else
-        dialog --title "Unsupported Linux Distribution" --msgbox "EatInstaller has detected an unsupported Linux distro. Supported distros are Debian GNU/Linux, Ubuntu, Kali, Linux Mint, openSUSE, SUSE, Pengwin, Raspberry Pi OS, Fedora, Red Hat, CentOS, ArchLinux, Android (Termux), other RHEL/SUSE/Debian based distributions." 1000 1000
+        dialog --title "Unsupported Linux Distribution" --msgbox "EatInstaller has detected an unsupported Linux distro. Supported distros are Debian GNU/Linux, Ubuntu, Kali, Linux Mint, openSUSE, SUSE, Pengwin, Raspberry Pi OS, Fedora, Red Hat, CentOS, ArchLinux, Android (Termux), other RHEL/SUSE/Debian/Arch based distributions." 1000 1000
         clear
         exit 1
     fi
