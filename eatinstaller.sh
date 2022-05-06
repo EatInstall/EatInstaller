@@ -6,7 +6,7 @@ if ! command -v dialog &> /dev/null; then
    echo "On Debian, it's in the main repository."
    exit 1
 fi
-if ($SOTYPE != "linux-gnu"); then
+if [[ "$SOTYPE" -ne "linux-gnu" ]]; then
    dialog --no-shadow --title "Unsupported OS" --msgbox "Eat is only supported on Linux and Windows Subsystem for Linux, but macOS is planned." 1000 1000
    clear
    exit 1
