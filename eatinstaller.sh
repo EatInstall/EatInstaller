@@ -7,7 +7,7 @@ if ! command -v dialog &> /dev/null; then
    exit 1
 fi
 if [[ $SOTYPE -ne "linux-gnu" ]]; then
-   dialog --title "Unsupported OS" --msgbox "Eat is only supported on Linux and Windows Subsystem for Linux, but macOS is planned." 1000 1000
+   dialog --no-shadow --title "Unsupported OS" --msgbox "Eat is only supported on Linux and Windows Subsystem for Linux, but macOS is planned." 1000 1000
    clear
    exit 1
 fi
@@ -17,7 +17,7 @@ if ! [[ $(id -u) -ne 0 ]]; then
    exit 1
 fi
 if [ -d "/home/$(whoami)/Eat-PKG-Manager" ]; then
-   dialog --title "Too Many Installations" --msgbox "To prevent conflicts and errors, only one installation of Eat per OS is allowed to be installed." 1000 1000
+   dialog --no-shadow --title "Too Many Installations" --msgbox "To prevent conflicts and errors, only one installation of Eat per OS is allowed to be installed." 1000 1000
    clear
    exit 1
 fi
@@ -56,16 +56,16 @@ sudo echo -n "" || autherror
 clear
 
 # Install dependencies, return output in the UI
-dialog --title "Installing OS Dependencies" --prgbox "Eat is installing it's dependencies. This will take a while, and the progress can be seen below." "$INSTALL_COMMAND" 1000 1000
-dialog --title "Installing Python Dependencies" --prgbox "Eat is installing additional dependencies for Python 3." "python3 -m pip install colorama distro requests pyyaml distro" 1000 1000
+dialog --no-shadow --title "Installing OS Dependencies" --prgbox "Eat is installing it's dependencies. This will take a while, and the progress can be seen below." "$INSTALL_COMMAND" 1000 1000
+dialog --no-shadow --title "Installing Python Dependencies" --prgbox "Eat is installing additional dependencies for Python 3." "python3 -m pip install colorama distro requests pyyaml distro" 1000 1000
 
 # Ask the user to configure the Eat sources
-if dialog --title "Installation" --yesno "The Eat network and Eat itself will be installed NOW. The network will contain each package you install using Eat. Removing the network is possible, but will lead to Eat recovering the network. The UI will be temporarily disabled, but it will appear again soon. Continue?" 1000 1000
+if dialog --no-shadow --title "Installation" --yesno "The Eat network and Eat itself will be installed NOW. The network will contain each package you install using Eat. Removing the network is possible, but will lead to Eat recovering the network. The UI will be temporarily disabled, but it will appear again soon. Continue?" 1000 1000
 then
    clear # clear to exit the GUI
    echo "Warning: The GUI has been disabled."
    git clone "https://github.com/EatInstall/Eat" ~/Eat-PKG-Manager --depth 1
-   git clone "https://github.com/EatInstall/Eat" ~/eat_sources --depth 1
+   git clone "https://github.com/EatInstall/Network" ~/eat_sources --depth 1
    clear
 else
    clear
@@ -77,6 +77,6 @@ echo "# Add eat package manager commands." >> ~/.bashrc
 echo "alias eat='python3 ~/Eat-PKG-Manager/eat.py'" >> ~/.bashrc
 echo "alias eatinst='python3 ~/Eat-PKG-Manager/eat-install.py'" >> ~/.bashrc
 echo "alias eathelp='python3 ~/Eat-PKG-Manager/man-eat.py'" >> ~/.bashrc
-dialog --title "Setup Complete" --msgbox "Eat has been installed! You can configure Eat to your favourites by editing ~/eatconfig.yaml, so you can make Eat your favourite package manager. Thank you for installing Eat!" 1000 1000
+dialog --no-shadow --title "Setup Complete" --msgbox "Eat has been installed! You can configure Eat to your favourites by editing ~/eatconfig.yaml, so you can make Eat your favourite package manager. Thank you for installing Eat!" 1000 1000
 clear
 exit 0
