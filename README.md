@@ -6,7 +6,7 @@ A community-maintained graphical Eat installer, just for you.
 
 This installer requires:
 * `sudo`
-* The `dialog` program
+* The `dialog` program (enter `apt:dialog` in the browser address bar)
 * [cURL](https://curl.se/index.html)
 
 To install `dialog` on Debian, Ubuntu, etc.:
