@@ -25,7 +25,7 @@ fi
 # Get Linux distribution and set the dependency installation command for it
 if [ -f /etc/debian_version ]; then
     # Debian/Ubuntu/etc.
-    INSTALL_COMMAND="sudo apt-get update && sudo apt-get install git python3 python3-pip -y"
+     INSTALL_COMMAND="apt-get update && sudo apt-get install git python3 python3-pip -y"
 elif [ -f /etc/redhat-release ]; then
     # Red Hat, CentOS, etc.
     INSTALL_COMMAND="sudo yum install -y python3 git && python3 -m ensurepip"
@@ -36,6 +36,10 @@ else
     elif command -v pacman &> /dev/null; then
         # Arch/etc.
         INSTALL_COMMAND="sudo pacman -Sy && sudo pacman -S python git --needed --noconfirm && python3 -m ensurepip"
+    elif command -v apt &> /dev/null; then
+        # fix detection on android termux
+        INSTALL_COMMAND="apt-get update && apt-get install python git -y && python3 -m ensurepip"
+
     else
         dialog --title "Unsupported Linux Distribution" --msgbox "EatInstaller has detected an unsupported Linux distro. Supported distros are Debian GNU/Linux, Ubuntu, Kali, Linux Mint, openSUSE, SUSE, Pengwin, Raspberry Pi OS, Fedora, Red Hat, CentOS, ArchLinux, Android (Termux), other RHEL/SUSE/Debian/Arch based distributions." 1000 1000
         clear
