@@ -50,7 +50,7 @@ fi
 # Print an error if user is not in sudoers or hackers are installing eat (implemented in next line)
 autherror() {
   echo "failed to authenticate, are you in the sudoers file? The message should be above"
-  exit 1
+  read -n 1 -p ">>> press Ctrl+C to exit or any other key to continue"
 }
 
 # Check for authentication (may fail if user is not in SUDOers)
